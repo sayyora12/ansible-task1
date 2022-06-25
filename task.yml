@@ -1,0 +1,28 @@
+- hosts: web
+  tasks:   
+  - name: Install httpd and unzip 
+    yum:
+      name:
+        - httpd
+        - unzip
+      state: latest
+
+  - name: Start httpd
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+
+  - name: Unarchive the template
+    unarchive:
+      src: https://www.free-css.com/assets/files/free-css-templates/download/page280/heustonn.zip
+      dest: /root/
+      remote_src: yes
+
+  - name: Move extracted files
+    shell: "rsync -a heustonn-html/ /var/www/html/"
+
+  - name: Put SELinux in permissive mode
+    selinux:
+      policy: targeted
+      state: permissive
