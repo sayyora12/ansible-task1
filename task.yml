@@ -15,12 +15,12 @@
 
   - name: Unarchive the template
     unarchive:
-      src: https://www.free-css.com/assets/files/free-css-templates/download/page280/heustonn.zip
+      src: https://www.free-css.com/assets/files/free-css-templates/download/page280/foodhut.zip
       dest: /root/
       remote_src: yes
 
   - name: Move extracted files
-    shell: "rsync -a heustonn-html/ /var/www/html/"
+    shell: "rsync -a foodhut/ /var/www/html/"
 
   - name: Put SELinux in permissive mode
     selinux:
